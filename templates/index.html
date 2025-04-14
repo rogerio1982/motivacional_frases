@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Frases Motivacionais</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ09KxR4k+Gh06J1mG+DeF6nCqjF7AKoFc7duXh8Q43uTI3HLz4G4rxqfXXb" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        .card-header-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #4CAF50;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 20px;
+        }
+
+        .card-body {
+            text-align: center;
+        }
+
+        .card-text {
+            font-size: 1.2rem;
+            color: #555555;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card text-center">
+        <div class="card-header-center">
+            <h2>Motivação</h2>
+        </div>
+        <div class="card-body">
+            <h4 id="frase" class="card-text text-muted">Clique no botão abaixo para gerar uma frase motivacional.</h4>
+            <button id="gerarFrase" class="btn mt-4">Dose diária</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0pV9FhcJ3J1hO4t1/cpva99eHg60c8K6H6+vvD3ZFiTezKlh" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('gerarFrase').addEventListener('click', function() {
+            fetch('/gerar_frase')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('frase').innerText = data.frase;
+                });
+        });
+    </script>
+
+</body>
+</html>
